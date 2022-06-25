@@ -35,7 +35,7 @@ class YoloModel:
                                                     * y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
     
 
-            cv2.rectangle(img, (x1, y1), (x2, y2), (255, 50, 30), 2)
+            # cv2.rectangle(img, (x1, y1), (x2, y2), (255, 50, 30), 2)
 
             return (x1+x2)/2,(y1+y2)/2
 
