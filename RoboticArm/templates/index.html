@@ -1,11 +1,19 @@
 <html>
   <head>
     <title> Live video stream </title>
+    <style>
+      img{
+        position: absolute;
+        /* right: 20%; */
+        top: 500px;
+        /* margin-top: 80%; */
+      }
+    </style>
   </head>
   <body>
-  <center>
-    <h1> Live Video Stream </h1>
-    <img src = "{% url 'live_feed' %}">
-  </center>
+
+  <h1> Live Video Stream </h1>
+  <img src = "{% url 'live_feed' %}">
+
   </body>
 </html>

@@ -36,6 +36,10 @@ class YoloModel:
     
 
             cv2.rectangle(img, (x1, y1), (x2, y2), (255, 50, 30), 2)
+
+            return (x1+x2)/2,(y1+y2)/2
+
+        return 0,0
             # cv2.putText(img, str(classes.iloc[l, :][0]), (x1, y1-10),
             #             cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
 
