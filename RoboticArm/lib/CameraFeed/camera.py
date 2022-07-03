@@ -9,6 +9,7 @@ import PIL.Image as Image
 import torch
 import winsound
 import pyshine as ps
+import threading
 
 class VideoCamera(object):
     def __init__(self):
@@ -23,6 +24,7 @@ class VideoCamera(object):
         self.prev_frame_time = 0
         self.new_frame_time = 0
         self.theta = 0
+        self.t1 = threading.Thread(target=winsound.Beep, args=(600,100))
 
     
     def __del__(self):
@@ -36,7 +38,10 @@ class VideoCamera(object):
         x_c,y_c = self.yolo.detect(image,self.model)
         
         for i in range(5):
-            cv2.circle(image,(int(x_c+30*cos(self.theta+i*10).real),int(y_c+30*sin(self.theta+i*10).real)),8,(255, 0, 50),-1)
+            cv2.circle(image,(int(x_c+30*cos(self.theta+i*10).real),int(y_c+30*sin(self.theta+i*10).real)),8 - i,(255, 0, 50),-1)
+
+        cv2.circle(image,(int(x_c),int(y_c)),20,(255, 0, 50),1)
+        cv2.circle(image,(int(x_c),int(y_c)),40,(255, 0, 50),1)
 
         self.theta = self.theta + 1
 
@@ -73,7 +78,8 @@ class VideoCamera(object):
             # winsound.Beep(440, 500)
             cv2.circle(image,(int(image.shape[1]/2),int(image.shape[0]/2)),20,(0, 0, 255),-1)
             cv2.circle(image,(int(image.shape[1]/2),int(image.shape[0]/2)),30,(0, 0, 255),1)
-            winsound.Beep(600, 100)
+            winsound.Beep(1000, 100)
+            # self.t1.start()
         
         fps = int(1/(self.new_frame_time-self.prev_frame_time))
         self.prev_frame_time = self.new_frame_time
